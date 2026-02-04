@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\PrintRequests\Schemas;
 
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Schemas\Schema;
@@ -16,7 +17,12 @@ class PrintRequestForm
                 Select::make('user_id')
                     ->relationship('user', 'name')
                     ->required(),
-                TextInput::make('file_path')
+                FileUpload::make('file_path')
+                    ->label('Upload PDF')
+                    ->acceptedFileTypes(['application/pdf'])
+                    ->maxSize(5120) // 5MB
+                    ->directory('print-requests')
+                    ->downloadable()
                     ->required(),
                 TextInput::make('page_count')
                     ->required()

@@ -50,7 +50,7 @@ class BookingProcess extends Component
             'user_id' => $user->id,
             'item_unit_id' => null, // Will be assigned by Toolman
             'loan_date' => $this->pick_up_date,
-            'due_date' => \Carbon\Carbon::parse($this->pick_up_date)->addDays($this->duration),
+            'due_date' => \Carbon\Carbon::parse($this->pick_up_date)->addDays((int) $this->duration),
             'status' => 'pending',
         ]);
 

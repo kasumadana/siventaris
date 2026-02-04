@@ -9,8 +9,8 @@ use App\Filament\Resources\Loans\Schemas\LoanForm;
 use App\Filament\Resources\Loans\Tables\LoansTable;
 use App\Models\Loan;
 use BackedEnum;
-use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
+use Filament\Resources\Resource;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 
@@ -22,7 +22,8 @@ class LoanResource extends Resource
 
     public static function form(Schema $schema): Schema
     {
-        return LoanForm::configure($schema);
+        return $schema
+            ->components(LoanForm::getSchema());
     }
 
     public static function table(Table $table): Table

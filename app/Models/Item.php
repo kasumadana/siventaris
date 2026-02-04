@@ -13,6 +13,10 @@ class Item extends Model
 
     protected $guarded = ['id'];
 
+    protected $casts = [
+        'department' => \App\Enums\Department::class,
+    ];
+
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
@@ -23,8 +27,14 @@ class Item extends Model
         return $this->hasMany(ItemUnit::class);
     }
 
+    public function getAvailableStockAttribute()
+    {
+        return $this->total_stock;
+    }
+
     /**
      * Sync the total stock based on available units.
+     * This method is called by ItemUnitObserver whenever a unit is modified.
      */
     public function syncStock(): void
     {

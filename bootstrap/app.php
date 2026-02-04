@@ -11,7 +11,12 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        $middleware->redirectUsersTo(function () {
+            if (request()->user()?->role === 'student') {
+                return route('catalog');
+            }
+            return '/admin';
+        });
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

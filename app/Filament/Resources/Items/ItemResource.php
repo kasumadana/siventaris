@@ -9,8 +9,8 @@ use App\Filament\Resources\Items\Schemas\ItemForm;
 use App\Filament\Resources\Items\Tables\ItemsTable;
 use App\Models\Item;
 use BackedEnum;
-use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
+use Filament\Resources\Resource;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 
@@ -22,7 +22,8 @@ class ItemResource extends Resource
 
     public static function form(Schema $schema): Schema
     {
-        return ItemForm::configure($schema);
+        return $schema
+            ->components(ItemForm::getSchema());
     }
 
     public static function table(Table $table): Table

@@ -19,6 +19,9 @@ class ItemsTable
                     ->searchable(),
                 TextColumn::make('name')
                     ->searchable(),
+                TextColumn::make('department')
+                    ->badge()
+                    ->sortable(),
                 TextColumn::make('slug')
                     ->searchable(),
                 ImageColumn::make('image'),
@@ -35,7 +38,8 @@ class ItemsTable
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                \Filament\Tables\Filters\SelectFilter::make('department')
+                    ->options(\App\Enums\Department::class),
             ])
             ->recordActions([
                 EditAction::make(),

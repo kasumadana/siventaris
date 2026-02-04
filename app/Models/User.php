@@ -14,6 +14,12 @@ class User extends Authenticatable implements FilamentUser
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
+    /**
+     * Determine if the user can access the Filament admin panel.
+     *
+     * @param Panel $panel
+     * @return bool
+     */
     public function canAccessPanel(Panel $panel): bool
     {
         return in_array($this->role, ['admin', 'toolman']);
@@ -28,6 +34,10 @@ class User extends Authenticatable implements FilamentUser
         'name',
         'email',
         'password',
+        'role',
+        'class_name',
+        'student_id_number',
+        'is_blocked',
     ];
 
     /**

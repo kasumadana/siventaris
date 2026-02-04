@@ -12,6 +12,7 @@ class Catalog extends Component
 {
     public $search = '';
     public $category_id = '';
+    public $department = '';
 
     public function render()
     {
@@ -24,6 +25,9 @@ class Catalog extends Component
             })
             ->when($this->category_id, function ($query) {
                 $query->where('category_id', $this->category_id);
+            })
+            ->when($this->department, function ($query) {
+                $query->where('department', $this->department);
             })
             ->get()
             ->map(function ($item) {

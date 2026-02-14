@@ -27,14 +27,21 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
+            ->login()
             ->favicon(asset('images/favicon.png'))
-            ->brandLogo(asset('images/logo.png'))
-            ->brandLogoHeight('2rem')
             ->brandName('SIVENTARIS Admin')
-            ->login(\App\Filament\Pages\Auth\Login::class)
+            ->brandLogo(asset('images/logo.png'))
+            ->darkModeBrandLogo(asset('images/logo.png'))
+            ->brandLogoHeight('2.5rem')
             ->colors([
                 'primary' => Color::Blue,
+                'gray' => Color::Slate,
+                'danger' => Color::Rose,
+                'info' => Color::Sky,
+                'success' => Color::Emerald,
+                'warning' => Color::Amber,
             ])
+            ->font('Inter')
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')
             ->pages([

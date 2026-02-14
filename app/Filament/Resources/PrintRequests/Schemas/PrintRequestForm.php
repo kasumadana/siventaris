@@ -2,14 +2,13 @@
 
 namespace App\Filament\Resources\PrintRequests\Schemas;
 
-use Filament\Forms\Components\Select;
 use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
-use Filament\Forms\Form;
-
-
-
+use Filament\Forms\Components\TextInput;
+use Filament\Schemas\Components\Grid;
+use Filament\Schemas\Components\Group;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
 class PrintRequestForm
@@ -18,12 +17,14 @@ class PrintRequestForm
     {
         return $schema
             ->components([
-                \Filament\Schemas\Components\Grid::make(3)
+                // ROOT GRID: 3 columns
+                Grid::make(['default' => 1, 'lg' => 3])
                     ->schema([
-                        \Filament\Schemas\Components\Group::make()
-                            ->columnSpan(['lg' => 2])
+                        // ── LEFT COLUMN (2/3 width) ──
+                        Group::make()
+                            ->columnSpan(['default' => 'full', 'lg' => 2])
                             ->schema([
-                                \Filament\Schemas\Components\Section::make('Informasi Request Print')
+                                Section::make('Informasi Request Print')
                                     ->schema([
                                         Select::make('user_id')
                                             ->label('User (Pemohon)')
@@ -44,10 +45,12 @@ class PrintRequestForm
                                             ->columnSpanFull(),
                                     ]),
                             ]),
-                        \Filament\Schemas\Components\Group::make()
-                            ->columnSpan(['lg' => 1])
+
+                        // ── RIGHT COLUMN (1/3 width) ──
+                        Group::make()
+                            ->columnSpan(['default' => 'full', 'lg' => 1])
                             ->schema([
-                                \Filament\Schemas\Components\Section::make('Parameter & Status')
+                                Section::make('Parameter & Status')
                                     ->schema([
                                         Select::make('status')
                                             ->options([

@@ -6,6 +6,9 @@ use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
+use Filament\Schemas\Components\Grid;
+use Filament\Schemas\Components\Group;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 
 class UserForm
@@ -14,22 +17,26 @@ class UserForm
     {
         return $schema
             ->components([
-                \Filament\Schemas\Components\Grid::make(3)
+                // ROOT GRID: 3 columns
+                Grid::make(['default' => 1, 'lg' => 3])
                     ->schema([
-                        \Filament\Schemas\Components\Group::make()
-                            ->columnSpan(['lg' => 2])
+                        // ── LEFT COLUMN (2/3 width) ──
+                        Group::make()
+                            ->columnSpan(['default' => 'full', 'lg' => 2])
                             ->schema([
-                                \Filament\Schemas\Components\Section::make('Informasi Pribadi')
+                                Section::make('Informasi Pribadi')
                                     ->schema([
                                         TextInput::make('name')
+                                            ->label('Nama Lengkap')
                                             ->required(),
                                         TextInput::make('email')
                                             ->label('Alamat Email')
                                             ->email()
                                             ->required(),
-                                        \Filament\Schemas\Components\Grid::make(2)
+                                        Grid::make(2)
                                             ->schema([
                                                 Select::make('role')
+                                                    ->label('Peran')
                                                     ->options([
                                                         'admin' => 'Admin',
                                                         'toolman' => 'Toolman',
@@ -44,10 +51,12 @@ class UserForm
                                             ]),
                                     ]),
                             ]),
-                        \Filament\Schemas\Components\Group::make()
-                            ->columnSpan(['lg' => 1])
+
+                        // ── RIGHT COLUMN (1/3 width) ──
+                        Group::make()
+                            ->columnSpan(['default' => 'full', 'lg' => 1])
                             ->schema([
-                                \Filament\Schemas\Components\Section::make('Keamanan & Status')
+                                Section::make('Keamanan & Status')
                                     ->schema([
                                         TextInput::make('password')
                                             ->password()

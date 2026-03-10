@@ -18,7 +18,7 @@ class PrintRequestResource extends Resource
 {
     protected static ?string $model = PrintRequest::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedPrinter;
 
     public static function form(Schema $schema): Schema
     {

@@ -19,11 +19,19 @@ class LoanForm
     {
         return [
             // ROOT GRID: 3 columns
-            Grid::make(['default' => 1, 'lg' => 3])
+            Grid::make()
+                ->columnSpan('full')
+                ->columns([
+                    'default' => 1,
+                    'lg' => 3,
+                ])
                 ->schema([
                     // ── LEFT COLUMN (2/3 width) ──
                     Group::make()
-                        ->columnSpan(['default' => 'full', 'lg' => 2])
+                        ->columnSpan([
+                            'default' => 'full',
+                            'lg' => 2,
+                        ])
                         ->schema([
                             // ── QR SCANNER SECTION ──
                             Section::make('Scan Kartu Siswa')
@@ -66,7 +74,7 @@ class LoanForm
 
                             Section::make('Detail Peminjaman')
                                 ->schema([
-                                    Grid::make(2)
+                                    Grid::make(1)
                                         ->schema([
                                             Select::make('user_id')
                                                 ->label('Peminjam (Siswa)')
@@ -85,7 +93,7 @@ class LoanForm
                                                 ->live()
                                                 ->required(),
                                         ]),
-                                    Grid::make(2)
+                                    Grid::make(1)
                                         ->schema([
                                             DateTimePicker::make('loan_date')
                                                 ->label('Tanggal Pinjam')
@@ -104,7 +112,10 @@ class LoanForm
 
                     // ── RIGHT COLUMN (1/3 width) ──
                     Group::make()
-                        ->columnSpan(['default' => 'full', 'lg' => 1])
+                        ->columnSpan([
+                            'default' => 'full',
+                            'lg' => 1,
+                        ])
                         ->schema([
                             Section::make('Status & Pengembalian')
                                 ->schema([

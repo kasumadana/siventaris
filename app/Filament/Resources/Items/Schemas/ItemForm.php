@@ -18,14 +18,22 @@ class ItemForm
     {
         return [
             // ROOT GRID: 3 columns
-            Grid::make(['default' => 1, 'lg' => 3])
+            Grid::make()
+                ->columnSpan('full')
+                ->columns([
+                    'default' => 1,
+                    'lg' => 3,
+                ])
                 ->schema([
                     // ── LEFT COLUMN (2/3 width) ──
                     Group::make()
-                        ->columnSpan(['default' => 'full', 'lg' => 2])
+                        ->columnSpan([
+                            'default' => 'full',
+                            'lg' => 2,
+                        ])
                         ->schema([
                             Section::make('Informasi Utama Barang')
-                                ->columns(2)
+                                ->columns(1)
                                 ->schema([
                                     TextInput::make('name')
                                         ->label('Nama Barang')
@@ -81,7 +89,7 @@ class ItemForm
                                                 ->default('available')
                                                 ->required(),
                                         ])
-                                        ->columns(3)
+                                        ->columns(1)
                                         ->defaultItems(1)
                                         ->addActionLabel('Tambah Unit Baru'),
                                     Placeholder::make('total_stock_display')
@@ -92,7 +100,10 @@ class ItemForm
 
                     // ── RIGHT COLUMN (1/3 width) ──
                     Group::make()
-                        ->columnSpan(['default' => 'full', 'lg' => 1])
+                        ->columnSpan([
+                            'default' => 'full',
+                            'lg' => 1,
+                        ])
                         ->schema([
                             Section::make('Gambar Barang')
                                 ->schema([

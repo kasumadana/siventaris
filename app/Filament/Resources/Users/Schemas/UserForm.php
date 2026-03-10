@@ -18,11 +18,19 @@ class UserForm
         return $schema
             ->components([
                 // ROOT GRID: 3 columns
-                Grid::make(['default' => 1, 'lg' => 3])
+                Grid::make()
+                    ->columnSpan('full')
+                    ->columns([
+                        'default' => 1,
+                        'lg' => 3,
+                    ])
                     ->schema([
                         // ── LEFT COLUMN (2/3 width) ──
                         Group::make()
-                            ->columnSpan(['default' => 'full', 'lg' => 2])
+                            ->columnSpan([
+                                'default' => 'full',
+                                'lg' => 2,
+                            ])
                             ->schema([
                                 Section::make('Informasi Pribadi')
                                     ->schema([
@@ -33,7 +41,7 @@ class UserForm
                                             ->label('Alamat Email')
                                             ->email()
                                             ->required(),
-                                        Grid::make(2)
+                                        Grid::make(1)
                                             ->schema([
                                                 Select::make('role')
                                                     ->label('Peran')
@@ -54,7 +62,10 @@ class UserForm
 
                         // ── RIGHT COLUMN (1/3 width) ──
                         Group::make()
-                            ->columnSpan(['default' => 'full', 'lg' => 1])
+                            ->columnSpan([
+                                'default' => 'full',
+                                'lg' => 1,
+                            ])
                             ->schema([
                                 Section::make('Keamanan & Status')
                                     ->schema([

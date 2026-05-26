@@ -28,7 +28,8 @@ class LoanResource extends Resource
 
     public static function table(Table $table): Table
     {
-        return LoansTable::configure($table);
+        return LoansTable::configure($table)
+            ->modifyQueryUsing(fn (\Illuminate\Database\Eloquent\Builder $query) => $query->with(['user', 'itemUnit.item']));
     }
 
     public static function getRelations(): array

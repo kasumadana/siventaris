@@ -38,25 +38,28 @@ class LoanForm
                                 ->icon('heroicon-o-qr-code')
                                 ->schema([
                                     TextInput::make('student_nis_scan')
-                                        ->label('Scan Kartu Siswa (QR/Barcode)')
-                                        ->placeholder('Arahkan scanner ke kartu siswa atau ketik NIS...')
-                                        ->helperText('Scan QR/Barcode pada kartu siswa untuk mengisi data peminjam otomatis.')
+                                        ->label('Scan Kartu Pelajar (QR Code / NIS)')
+                                        ->placeholder('Arahkan scanner ke kartu pelajar atau ketik NIS...')
                                         ->prefixIcon('heroicon-o-qr-code')
                                         ->autofocus()
                                         ->live(onBlur: true)
-                                        ->afterStateUpdated(function (\Filament\Forms\Set $set, \Filament\Forms\Get $get, ?string $state) {
+                                        ->dehydrated(false)
+                                        ->afterStateUpdated(function (\Filament\Forms\Set $set, ?string $state) {
                                             if (blank($state)) {
                                                 return;
                                             }
 
-                                            $student = User::where('student_id_number', $state)->first();
+                                            $student = User::where('student_id_number', $state)
+                                                ->when(\Illuminate\Support\Facades\Schema::hasColumn('users', 'nis'), function ($query) use ($state) {
+                                                    return $query->orWhere('nis', $state);
+                                                })
+                                                ->first();
 
                                             if ($student) {
                                                 $set('user_id', $student->id);
 
                                                 Notification::make()
-                                                    ->title('Siswa Ditemukan')
-                                                    ->body("Nama: {$student->name} | Kelas: {$student->class_name}")
+                                                    ->title("Siswa Ditemukan: {$student->name}")
                                                     ->success()
                                                     ->send();
                                             } else {
@@ -64,12 +67,11 @@ class LoanForm
 
                                                 Notification::make()
                                                     ->title('Siswa Tidak Ditemukan')
-                                                    ->body("NIS \"{$state}\" tidak ditemukan di database.")
+                                                    ->body("NIS/QR \"{$state}\" tidak terdaftar.")
                                                     ->danger()
                                                     ->send();
                                             }
-                                        })
-                                        ->dehydrated(false), // Don't save this virtual field
+                                        }),
                                 ]),
 
                             Section::make('Detail Peminjaman')

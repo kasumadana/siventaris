@@ -28,7 +28,8 @@ class ItemResource extends Resource
 
     public static function table(Table $table): Table
     {
-        return ItemsTable::configure($table);
+        return ItemsTable::configure($table)
+            ->modifyQueryUsing(fn (\Illuminate\Database\Eloquent\Builder $query) => $query->with(['category', 'itemUnits']));
     }
 
     public static function getRelations(): array

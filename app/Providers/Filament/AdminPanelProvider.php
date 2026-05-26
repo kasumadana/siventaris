@@ -31,7 +31,7 @@ class AdminPanelProvider extends PanelProvider
             ->favicon(asset('images/favicon.png'))
             ->brandName('SIVENTARIS Admin')
             ->brandLogo(asset('images/logo.png'))
-            ->darkModeBrandLogo(asset('images/logo.png'))
+            ->darkModeBrandLogo(asset('images/logo-dark.png'))
             ->brandLogoHeight('2.5rem')
             ->colors([
                 'primary' => Color::Blue,

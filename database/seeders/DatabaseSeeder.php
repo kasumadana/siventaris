@@ -40,5 +40,11 @@ class DatabaseSeeder extends Seeder
             'student_id_number' => '12345',
             'class_name' => 'XII RPL 1',
         ]);
+
+        // 4. Seed Categories and Items
+        $this->call([
+            CategorySeeder::class,
+            ItemSeeder::class,
+        ]);
     }
 }

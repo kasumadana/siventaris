@@ -27,7 +27,7 @@ class ItemSeeder extends Seeder
             'TKJ' => [
                 'Router Mikrotik', 'Switch Cisco 24 Port', 'Tang Crimping', 'LAN Tester', 'Access Point Ubiquiti'
             ],
-            'MM' => [ // Mapping MM to DKV or similar if intended, but let's stick to generic or correct enums
+            'DKV' => [ // Mapping MM to DKV or similar if intended, but let's stick to generic or correct enums
                 'Kamera Canon DSLR', 'Tripod Takara', 'Lighting Studio Setup', 'Green Screen'
             ],
             'General' => [

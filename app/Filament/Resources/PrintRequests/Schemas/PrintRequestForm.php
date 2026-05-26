@@ -77,6 +77,12 @@ class PrintRequestForm
                                             ->required()
                                             ->numeric()
                                             ->default(0),
+                                        TextInput::make('total_price')
+                                            ->label('Total Biaya')
+                                            ->prefix('Rp')
+                                            ->numeric()
+                                            ->disabled()
+                                            ->dehydrated(),
                                     ]),
                             ]),
                     ]),

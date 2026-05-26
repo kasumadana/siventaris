@@ -23,6 +23,11 @@ class Loan extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function item(): BelongsTo
+    {
+        return $this->belongsTo(Item::class);
+    }
+
     public function itemUnit(): BelongsTo
     {
         return $this->belongsTo(ItemUnit::class);

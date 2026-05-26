@@ -48,6 +48,7 @@ class BookingProcess extends Component
         // 3. Create Pending Loan
         Loan::create([
             'user_id' => $user->id,
+            'item_id' => $this->item->id,
             'item_unit_id' => null, // Will be assigned by Toolman
             'loan_date' => $this->pick_up_date,
             'due_date' => \Carbon\Carbon::parse($this->pick_up_date)->addDays((int) $this->duration),

@@ -23,7 +23,7 @@ class BookingProcess extends Component
     public function mount(Item $item)
     {
         $this->item = $item;
-        $this->pick_up_date = now()->format('Y-m-d\TH:i');
+        $this->pick_up_date = now()->addHour()->format('Y-m-d\TH:i');
     }
 
     public function book()

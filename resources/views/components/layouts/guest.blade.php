@@ -8,7 +8,7 @@
     <title>{{ $title ?? 'Login - SIVENTARIS' }}</title>
     <link rel="icon" href="{{ asset('images/favicon.png') }}" type="image/png">
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-gray-100 font-sans antialiased h-screen flex items-center justify-center">
 

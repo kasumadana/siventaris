@@ -8,20 +8,8 @@
     <title>{{ $title ?? config('app.name', 'SIVENTARIS') }}</title>
     <link rel="icon" href="{{ asset('images/favicon.png') }}" type="image/png">
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#2563eb', // blue-600
-                        secondary: '#1e40af', // blue-800
-                    }
-                }
-            }
-        }
-    </script>
+    <!-- Tailwind CSS & JS Assets -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-gray-50 font-sans antialiased pb-20 md:pb-0">
 

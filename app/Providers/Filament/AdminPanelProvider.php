@@ -51,6 +51,10 @@ class AdminPanelProvider extends PanelProvider
             ->widgets([
                 AccountWidget::class,
                 \App\Filament\Widgets\StatsOverview::class,
+                \App\Filament\Widgets\OverdueLoans::class,
+                \App\Filament\Widgets\LatestLoans::class,
+                \App\Filament\Widgets\ItemUnitStatusChart::class,
+                \App\Filament\Widgets\LoanTrendsChart::class,
             ])
             ->middleware([
                 EncryptCookies::class,

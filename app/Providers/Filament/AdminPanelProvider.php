@@ -50,17 +50,11 @@ class AdminPanelProvider extends PanelProvider
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
             ->widgets([
                 AccountWidget::class,
-<<<<<<< HEAD
                 \App\Filament\Widgets\StatsOverview::class,
                 \App\Filament\Widgets\OverdueLoans::class,
                 \App\Filament\Widgets\LatestLoans::class,
                 \App\Filament\Widgets\ItemUnitStatusChart::class,
                 \App\Filament\Widgets\LoanTrendsChart::class,
-=======
-                \App\Filament\Widgets\AdminStatsOverview::class,
-                \App\Filament\Widgets\LoanCirculationChart::class,
-                \App\Filament\Widgets\LatestPendingLoansWidget::class,
->>>>>>> cf4a8f5f352cbaf8d48d561341232f08a440ffe4
             ])
             ->middleware([
                 EncryptCookies::class,
